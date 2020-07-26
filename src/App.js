@@ -7,12 +7,24 @@ function App() {
 
   const [guessor, setGuessor] = React.useState("");
   const [gender, setGender] = React.useState("");
-  const [height, setHeight] = React.useState(0);
+  const [length, setLength] = React.useState(0);
   const [weight, setWeight] = React.useState(0);
+
+  const [guesses, setGuesses] = React.useState();
 
   const [loading, setLoading] = React.useState(false);
   const [response, setResponse] = React.useState("");
   const [error, setError] = React.useState("");
+
+  React.useEffect(() => {
+    axios.get("https://tjnz1pstx0.execute-api.ap-southeast-2.amazonaws.com/dev")
+    .then(res => {
+      console.log(res.data)
+      setGuesses(res.data)
+    }).catch(err => {
+      console.log(error.occurred)
+    })
+  }, [])
 
   function handleNameChange(event) {
     setGuessor(event.target.value)
@@ -22,8 +34,8 @@ function App() {
     setGender(event.target.value)
   }
 
-  function handleHeightChange(event) {
-    setHeight(event.target.value)
+  function handleLengthChange(event) {
+    setLength(event.target.value)
   }
 
   function handleWeightChange(event) {
@@ -36,22 +48,28 @@ function App() {
     setResponse("")
     setLoading(true)
 
-    axios.post(
+    await axios.post(
       'https://tjnz1pstx0.execute-api.ap-southeast-2.amazonaws.com/dev/create',
-      { "guessor": guessor, "gender": gender, "bb_height": height, "bb_weight": weight }
+      { "guessor": guessor, "gender": gender, "bb_length": length, "bb_weight": weight }
     ).then(res => {
       setResponse("Successfully saved message.")
+    })
+
+    await axios.get("https://tjnz1pstx0.execute-api.ap-southeast-2.amazonaws.com/dev")
+    .then(res => {
+      setGuesses(res.data)
       setLoading(false)
-    }).catch(err => {
+    })
+    .catch(err => {
       setError("An error occurred.")
       setLoading(false)
     })
+
   }
 
 
   return (
     <div>
-      {/* <form onSubmit={handleSubmit}> */}
         <label>Guessor:</label>
         <input
           type="text"
@@ -72,8 +90,8 @@ function App() {
         <input
           type="text"
           name="message"
-          onChange={handleHeightChange}
-          value={height}
+          onChange={handleLengthChange}
+          value={length}
         />
 
         <label>Weight:</label>
@@ -91,8 +109,29 @@ function App() {
         {
           response && <div>{response}</div>
         }
-      {/* </form> */}
+        <table>
+          <thead>
+            <tr>
+              <th>Guessor</th>
+              <th>Gender</th>
+              <th>Weight</th>
+              <th>Length</th>
+            </tr>
+          </thead>
+          <tbody>
+          {guesses && guesses.map(guess => {return (
+            <tr key={guess['date']}>
+              <td>{guess['guessor']}</td>
+              <td>{guess['gender']}</td>
+              <td>{guess['bb_weight']}</td>
+              <td>{guess['bb_length']}</td>
+            </tr>
+          )
+          })}
+          </tbody>
+        </table>
     </div>
+
   );
 }
 
