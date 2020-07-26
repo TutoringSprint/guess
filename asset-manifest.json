@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/guess/static/css/main.5f361e03.chunk.css",
+    "main.js": "/guess/static/js/main.13a8cee5.chunk.js",
+    "main.js.map": "/guess/static/js/main.13a8cee5.chunk.js.map",
+    "runtime-main.js": "/guess/static/js/runtime-main.629665a4.js",
+    "runtime-main.js.map": "/guess/static/js/runtime-main.629665a4.js.map",
+    "static/js/2.353b10ec.chunk.js": "/guess/static/js/2.353b10ec.chunk.js",
+    "static/js/2.353b10ec.chunk.js.map": "/guess/static/js/2.353b10ec.chunk.js.map",
+    "index.html": "/guess/index.html",
+    "precache-manifest.e6d82d4719425bb2d62935dade8cdfa4.js": "/guess/precache-manifest.e6d82d4719425bb2d62935dade8cdfa4.js",
+    "service-worker.js": "/guess/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/guess/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.353b10ec.chunk.js.LICENSE.txt": "/guess/static/js/2.353b10ec.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/guess/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.629665a4.js",
+    "static/js/2.353b10ec.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.13a8cee5.chunk.js"
+  ]
+}
